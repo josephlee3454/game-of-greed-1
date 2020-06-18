@@ -39,3 +39,7 @@ def test_with_less():
 def test_44411():
     the_function = GameLogic.calculat_score((4,4,4,1,1))
     assert the_function == 600
+
+def test_111111():
+    the_function = GameLogic.calculat_score((1,1,1,1,1,1))
+    assert the_function == 4000

@@ -39,6 +39,8 @@ class GameLogic:
       key_value = current_dice[current_keys[i]]
 
       if key_value >= 3:
+        if key1 == 1:
+          key1 = 10
         total += (key1*100) + (key_value -3) * key1 * 100
     return total
 
