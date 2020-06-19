@@ -1,7 +1,7 @@
-## Game of Greed I
+# Game of Greed I
 
-**Authors:** Lee-Roy King, William Koger, Joseph Lee, Roman Sydoruk 
-**Version:** 1.0.0
+## **Authors:** Lee-Roy King, William Koger, Joseph Lee, Roman Sydoruk 
+## **Version:** 1.0.0
 
 # Description
 
@@ -28,11 +28,7 @@ Game of Greed I is a python command line version of the dice game. To review rul
 
 
 
-# overveiw of tasks
-* Today you’ll begin working in teams on a command line version of the dice game Game of Greed by expanding your understanding of Python standard library.
-
-* Feature Tasks and Requirements
-* Today is all about tackling the highest risk and/or highest priority features - scoring, dice rolling and banking of points.
+# Overveiw of tasks
 * Define a GameLogic class.
 * Handle calculating score for dice roll
 * Add calculate_score static method to GameLogic class.
