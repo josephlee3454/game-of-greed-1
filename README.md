@@ -51,3 +51,4 @@ Game of Greed I is a python command line version of the dice game. To review rul
 * bank should add any points on the shelf to total and reset shelf to 0.
 * bank output should be the amount of points added to total from shelf.
 * Add a clear_shelf instance method
+* clear_shelf should remove all unbanked points.* 
