@@ -63,13 +63,21 @@ class GameLogic:
 
 
 
-# class Banker:
+class Banker:
+  def __init__(self):
+    self.shelf_storage = 0
+    self.banked_points = 0
+ 
+  def shelf(self,value):
+    self.shelf_storage += value
+    
 
-#   def shelf():
-#     pass
+  def bank(self):
+    self.banked_points += self.shelf_storage
+    self.clear_shelf()
+    return self.banked_points
 
-#   def bank():
-#     pass
 
-#   def clear_shelf():
-#     pass
+  def clear_shelf(self):
+    self.shelf_storage = 0
+
