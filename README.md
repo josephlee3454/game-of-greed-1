@@ -1,6 +1,7 @@
 # Game of Greed I
 
-## **Authors:** Lee-Roy King, William Koger, Joseph Lee, Roman Sydoruk 
+## **Authors:** 
+Lee-Roy King, William Koger, Joseph Lee, Roman Sydoruk 
 ## **Version:** 1.0.0
 
 # Description
