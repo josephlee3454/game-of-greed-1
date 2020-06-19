@@ -18,12 +18,15 @@ class GameLogic:
   @staticmethod
   def calculat_score(dice):
     total = 0
+    if isinstance(dice,int):
+      dice = tuple([dice])
     current_dice = Counter(dice)
     # if len(dice) == 6:
     if len(current_dice) == 6:
       return 1500##straight
     elif list(current_dice.values()).count(2) == 3:
       return 1500##pair
+    
 
     total = GameLogic.score_triples(total, current_dice)
     total = GameLogic.score_singles(total, current_dice)
