@@ -93,6 +93,7 @@ def test_shelf():
 
 def test_banked_point():
     bank = Banker()
+    bank.banked_points = 100
     bank.shelf_storage = 50
     actual = bank.bank()
     expected = 50
