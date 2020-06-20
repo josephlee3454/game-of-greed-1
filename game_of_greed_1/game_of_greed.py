@@ -101,6 +101,29 @@ class GameLogic:
           total += key_value*50
     
     return total 
+  @staticmethod
+  def dice_handler(int_list:[int],dice:(int)) -> (int,(int)):
+    """accepts list of dice indexes to keep and tuple of current dice
+    returns number dice-roll quanity and remaining dice. 
+
+    Args:
+        int_list ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
+    ## TODO : input validation unique and within range
+    fresh_dice = len(dice) - len(int_list)
+    new_dice = []
+    for die in int_list:
+      new_dice.append(dice[die])
+    new_dice = tuple(new_dice)
+    return (fresh_dice, new_dice)
+
+  
+
+
+    
 
 
 
