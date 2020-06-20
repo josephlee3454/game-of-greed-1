@@ -39,7 +39,15 @@ def play_again(bank):
     ## TODO: we need this to prevent infinite loop but its fundamentally wrong 
     else: 
       bank_user_input = input("Roll again y/n ? : ")
-          
+
+def Game(): 
+  print("Welcome to Game of Greed")
+  user_game_prompt = input("Wanna play?")
+  if user_game_prompt == 'y' 
+    turn(6)
+  else:
+    print("OK. Maybe another time")
+    sys.exit()      
+
 if __name__ == "__main__":
-    
-  turn(6)
+  main()
