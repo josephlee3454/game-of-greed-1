@@ -138,9 +138,10 @@ class Banker:
     clears the shelf after you adde the banked points
 
     """
-    self.banked_points += self.shelf_storage
+    to_bank = self.shelf_storage
+    self.banked_points += to_bank
     self.clear_shelf()
-    return self.banked_points
+    return to_bank
 
 
   def clear_shelf(self):
