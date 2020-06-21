@@ -1,6 +1,7 @@
-from game_of_greed_1.game import Game
+from game_of_greed_1.game import Game, GameLogic
+import builtins
 
-Game = main
+
 
 class Flo:
 
@@ -45,11 +46,21 @@ class Flo:
 
         flo = Flo(path)
 
-        game = Game(flo._mock_roller)
+        # game = Game(flo._mock_roller)
 
-        game.play()
+        # game.play()
+        # Game(flo._mock_roller)
 
-        flo._exit()
+        # flo._exit()
+        try:
+            saved_dice_rolls = GameLogic.roll_dice
+            GameLogic.roll_dice = flo._mock_roller
+            Game(flo._mock_roller)
+        except SystemExit:
+            flo.old_print("no problemo")
+        finally:
+            flo._exit()
+            GameLogic.roll_dice = saved_dice_rolls
 
     def _mock_roller(self, num):
         return self.rolls.pop(0)

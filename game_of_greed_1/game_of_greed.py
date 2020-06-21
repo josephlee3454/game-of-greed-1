@@ -115,8 +115,10 @@ class GameLogic:
     ## TODO : input validation unique and within range
     fresh_dice = len(dice) - len(int_list)
     new_dice = []
-    for die in int_list:
-      new_dice.append(dice[die])
+    for num in int_list:
+      if num in dice:
+        new_dice.append(num)
+        
     new_dice = tuple(new_dice)
     return (fresh_dice, new_dice)
 

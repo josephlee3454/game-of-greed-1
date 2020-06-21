@@ -1,5 +1,5 @@
-from game_of_greed import GameLogic
-from game_of_greed import Banker
+from game_of_greed_1.game_of_greed import GameLogic
+from game_of_greed_1.game_of_greed import Banker
 import sys
 
 def turn(num_dice):
@@ -21,7 +21,12 @@ def turn(num_dice):
 def zilch_out(dice):
   if not GameLogic.calculat_score(dice):
     print("zilch")
-    sys.exit()
+    # system_exit()
+
+def system_exit():
+  GameLogic.roll_dice = saved_roller
+  sys.exit()
+
 
   
 
@@ -31,7 +36,7 @@ def play_again(bank):
     if bank_user_input == "n":
       bank.bank()
       print("your banked points " + str(bank.banked_points))
-      sys.exit()
+      system_exit()
     
     elif bank_user_input == "y":
       print("this is what is on your shelf  " + str(bank.shelf_storage))
@@ -40,14 +45,21 @@ def play_again(bank):
     else: 
       bank_user_input = input("Roll again y/n ? : ")
 
-def Game(): 
+
+saved_roller = GameLogic.roll_dice
+
+def Game(mock_roller = None): 
+  if mock_roller:
+    GameLogic.roll_dice = mock_roller
   print("Welcome to Game of Greed")
   user_game_prompt = input("Wanna play?")
-  if user_game_prompt == 'y' 
+  if user_game_prompt == 'y':
     turn(6)
   else:
     print("OK. Maybe another time")
-    sys.exit()      
+       
+  system_exit()
+
 
 if __name__ == "__main__":
-  main()
+  Game()
