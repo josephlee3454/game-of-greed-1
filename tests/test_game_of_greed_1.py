@@ -111,4 +111,39 @@ def test_bank_clear_shelf_no_touching():
     bank.clear_shelf()
     assert bank.banked_points == 50 and bank.shelf_storage == 0
 
+def test_is_cheating_false():
+    dice = (1,1)
+    choices = [2]
+    assert GameLogic.is_cheating(choices, dice) == True 
+
+def test_is_cheating_true():
+    dice = (1,1)
+    choices = [1,1]
+    assert GameLogic.is_cheating(choices, dice) == False
+
+def test_is_cheating_false_to_many():
+    dice = (1,2)
+    choices = [1,2,3,4]
+    assert GameLogic.is_cheating(choices, dice) == True
+
+def test_is_cheating_false_nothing_there():
+    dice = (1,2,3)
+    choices = []
+    assert GameLogic.is_cheating(choices, dice) == True
+
+def test_is_cheating_pass_one():
+    dice = (2, 6, 4, 4, 1, 6)
+    choices = [1]
+    assert GameLogic.is_cheating(choices, dice) == False
+
+def test_hot_dice_one():
+    dice = (1,1,1,1,1,1)
+    assert GameLogic.hot_dice(dice,Banker()) == True
+
+def test_hot_dice_two():
+    dice = (1,1,1,1,1)
+    assert GameLogic.hot_dice(dice,Banker()) == False
+
+
+
 

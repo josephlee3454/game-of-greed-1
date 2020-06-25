@@ -1,34 +1,41 @@
-from game_of_greed_1.game_of_greed import GameLogic
-from game_of_greed_1.game_of_greed import Banker
+from game_of_greed import GameLogic
+from game_of_greed import Banker
 import sys
 
 def turn(num_dice):
       bank = Banker()
+      dice = GameLogic.roll_dice(num_dice)
       while num_dice:
-        dice = GameLogic.roll_dice(num_dice)
+        if GameLogic.hot_dice(dice):
+          pass
         print(dice)
         zilch_out(dice)
         user_input = input("what dice do you want: ")
-        user_input_list = [int(num) for num in user_input] 
-        num_dice, remaining_dice = GameLogic.dice_handler(user_input_list, dice)
-        current_score = GameLogic.calculat_score(remaining_dice)
-        zilch_out(remaining_dice)
-        print("current_score , ", current_score)
-        bank.shelf(current_score)
-        play_again(bank)
-
+        user_input_list = [int(num) for num in user_input]
+        if GameLogic.is_cheating(user_input_list, dice):
+          print("cheater") 
+        else: 
+          num_dice, remaining_dice = GameLogic.dice_handler(user_input_list, dice)
+          current_score = GameLogic.calculat_score(remaining_dice)
+          zilch_out(remaining_dice)
+          print("current_score , ", current_score)
+          bank.shelf(current_score)
+          play_again(bank)
+          dice = GameLogic.roll_dice(num_dice)
 
 def zilch_out(dice):
   if not GameLogic.calculat_score(dice):
     print("zilch")
-    # system_exit()
+    print("game is over!")
+    system_exit()
+
 
 def system_exit():
   GameLogic.roll_dice = saved_roller
   sys.exit()
 
 
-  
+ 
 
 def play_again(bank):
   bank_user_input = input("Roll again y/n ? : ")

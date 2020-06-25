@@ -42,3 +42,18 @@ Convert required features into suite of passing unit tests
 E.g. test_roll
 doing a roll with x number of dice should return sequence of x length random integers between 1 and 6 inclusive
 Use an automated tool to ensure correct behavior from end user’s perspective
+
+
+
+Feature Tasks and Requirements
+Application should implement features from versions 1 and 2
+Should handle when cheating occurs.
+Or just typos.
+E.g. roll = [1,3,5,2] and user selects 1, 1, 1, 1, 1, 1
+Should allow user to continue rolling with 6 new dice when all dice have scored in current turn.
+Handle zilch
+No points for round, and round is over
+Any other questions refer to game doc or the online game or ask.
+
+User Acceptance Tests
+Must pass provided unit and flow tests.

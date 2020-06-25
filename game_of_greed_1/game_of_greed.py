@@ -24,7 +24,7 @@ class GameLogic:
     return tuple(random.randint(1,6) for _ in range(count))
 
   @staticmethod
-  def calculat_score(dice: tuple) -> int:
+  def calculat_score_and_scored_dice(dice: tuple) -> int:
     """
     calculates score
 
@@ -36,23 +36,31 @@ class GameLogic:
     """
 
     total = 0
+    num_of_scored_dice = 0
     if isinstance(dice,int):
       dice = tuple([dice])
     current_dice = Counter(dice)
     # if len(dice) == 6:
     if len(current_dice) == 6:
-      return 1500##straight
+      return 1500, 6##straight
 
     elif list(current_dice.values()).count(2) == 3:
-      return 1500##pair
+      return 1500, 6##pair
     
-    total = GameLogic.score_triples(total, current_dice)
-    total = GameLogic.score_singles(total, current_dice)
-    return total
+    total, num_of_scored_dice = GameLogic.score_triples(total, current_dice, num_of_scored_dice)
+    total, num_of_scored_dice = GameLogic.score_singles(total, current_dice, num_of_scored_dice)
+    return total, num_of_scored_dice
+    
+  @staticmethod
+  def calculat_score(dice: tuple) -> int:
+    score, scored_dice = GameLogic.calculat_score_and_scored_dice(dice)
+      
+    return score
+
   
   
   @staticmethod
-  def score_triples(total:int, current_dice:tuple) -> int:
+  def score_triples(total:int, current_dice:tuple, num_of_scored_dice:int) -> int:
     """ scores the triple dice values 
 
     Args:
@@ -73,10 +81,11 @@ class GameLogic:
         if key1 == 1:
           key1 = 10
         total += (key1*100) + (key_value -3) * key1 * 100
-    return total
+        num_of_scored_dice += key_value
+    return total, num_of_scored_dice
 
   @staticmethod
-  def score_singles(total: int, current_dice: tuple) -> int:
+  def score_singles(total: int, current_dice: tuple, num_of_scored_dice: int) -> int:
     """ scores our single dice values
 
     Args:
@@ -96,11 +105,13 @@ class GameLogic:
         
         if key1 == 1:
           total += key_value*100  
-        
+          num_of_scored_dice += key_value 
+          
         if key1 == 5:
           total += key_value*50
-    
-    return total 
+          num_of_scored_dice += key_value 
+
+    return total, num_of_scored_dice
   @staticmethod
   def dice_handler(int_list:[int],dice:(int)) -> (int,(int)):
     """accepts list of dice indexes to keep and tuple of current dice
@@ -121,6 +132,42 @@ class GameLogic:
         
     new_dice = tuple(new_dice)
     return (fresh_dice, new_dice)
+  @staticmethod
+  def is_cheating(int_list:[int],dice:(int))->bool:
+    if len(int_list) < 1:
+      return True
+    counted_choices = Counter(int_list)
+    counted_dice = Counter(dice)
+    for choice in counted_choices:
+      real_dice_available = counted_dice[choice]
+      dice_requested = counted_choices[choice]
+      if real_dice_available < dice_requested:
+        print("you are a filthy cheater!")
+        return True 
+    
+    return False 
+
+  @staticmethod
+  def hot_dice(dice,bank):
+    score, scored_dice = GameLogic.calculat_score_and_scored_dice(dice)
+    if scored_dice == 6:
+      bank.shelf(score)
+      bank.bank()
+      print(f"Hot dice {dice} banked, {score} points")
+      return True
+    return False
+
+
+
+
+    
+## check if 6 dice are  scored *
+## if 6 dice are scored we need to shelf points*
+## print out what ht dice were with a note this is hot dice* 
+## if it is hot dice it needs to go back to the loop 
+
+
+    
 
   
 
