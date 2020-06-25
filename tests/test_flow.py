@@ -5,5 +5,5 @@ def test_flow():
 
   Flo.test('tests/flow/wanna_play.txt')
 
-def test_flow_bank_one():
-  Flo.test('tests/flow/bank_one_roll_then_quit.txt')
+# def test_flow_bank_one():
+#   Flo.test('tests/flow/bank_one_roll_then_quit.txt')
