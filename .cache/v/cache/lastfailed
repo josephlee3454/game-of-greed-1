@@ -1,4 +1,6 @@
 {
+  "tests/test_flow.py": true, 
+  "tests/test_game_of_greed_1.py": true, 
   "tests/test_game_of_greed_1.py::test_dice_numbers": true, 
   "tests/test_game_of_greed_1.py::test_score[1-100]": true, 
   "tests/test_game_of_greed_1.py::test_score[3-0]": true, 

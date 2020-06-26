@@ -3,6 +3,7 @@ from collections import Counter
 class GameLogic:
   """
   Gamelogic class
+  
   """
   
   def __str__(self):
@@ -21,6 +22,7 @@ class GameLogic:
     output = tuple()
     for i in range(count):
       pass
+  
     return tuple(random.randint(1,6) for _ in range(count))
 
   @staticmethod
@@ -134,6 +136,10 @@ class GameLogic:
     return (fresh_dice, new_dice)
   @staticmethod
   def is_cheating(int_list:[int],dice:(int))->bool:
+    """
+    checks for cheaters
+    
+    """
     if len(int_list) < 1:
       return True
     counted_choices = Counter(int_list)
@@ -149,6 +155,10 @@ class GameLogic:
 
   @staticmethod
   def hot_dice(dice,bank):
+    """
+    checks for hot dice
+    
+    """
     score, scored_dice = GameLogic.calculat_score_and_scored_dice(dice)
     if scored_dice == 6:
       bank.shelf(score)
