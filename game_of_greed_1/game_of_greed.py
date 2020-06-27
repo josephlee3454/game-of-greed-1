@@ -167,6 +167,9 @@ class GameLogic:
       return True
     return False
 
+  @staticmethod
+  def get_scorers(dice):
+    return [1,5]
 
 
 

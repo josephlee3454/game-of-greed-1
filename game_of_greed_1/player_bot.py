@@ -1,9 +1,9 @@
 from game_of_greed_1.game_of_greed import GameLogic, Banker
-from game_of_greed_1.game import turn, Game
+from game_of_greed_1.game import Game
 import builtins
 import re
 
-  
+
 """"
 Create a Game of Greed Player Bots
 ONLY use public methods
@@ -56,6 +56,8 @@ class BasePlayer:
 class Naysayer(BasePlayer):
   def _mock_input(self, *args, **kwargs):
     return "n"
+  def _mock_print(self, *args, **kwargs):
+    self.old_print(args[0])
 
 
 class NervousNellie(BasePlayer):
@@ -71,20 +73,20 @@ class NervousNellie(BasePlayer):
     elif first_arg.startswith("Thanks for playing."):
       self.total_score = int(re.findall(r"\d+", first_arg)[0])
 
-    def _mock_input(self, *args, **kwargs):
-      prompt = args[0]
-      if prompt.startswith("Wanna play?"):
-        return "y"
-      elif prompt.startswith("Enter dice to keep (no spaces), or (q)uit:"):
-        scorers = GameLogic.get_scorers(self.roll)
-        keepers = "".join([str(ch) for ch in scorers])
-        return keepers
-      elif prompt.startswith("(r)oll again, (b)ank your points or (q)uit "):
-        return "b"
-      else:
-        raise ValueError(f"Unrecognized prompt {prompt}")
+  def _mock_input(self, *args, **kwargs):
+    prompt = args[0]
+    if prompt.startswith("Wanna play?"):
+      return "y"
+    elif prompt.startswith("Enter dice to keep (no spaces), or (q)uit:"):
+      scorers = GameLogic.get_scorers(self.roll)
+      keepers = "".join([str(ch) for ch in scorers])
+      return keepers
+    elif prompt.startswith("(r)oll again, (b)ank your points or (q)uit "):
+      return "b"
+    else:
+      raise ValueError(f"Unrecognized prompt {prompt}")
 
 
 if __name__ == "__main__":
-    # Naysayer.play(100)
-  NervousNellie.play(100)
+    Naysayer.play(100)
+  # NervousNellie.play(100)
