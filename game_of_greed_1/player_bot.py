@@ -1,5 +1,5 @@
 from game_of_greed_1.game_of_greed import GameLogic, Banker
-from game_of_greed_1.game import turn
+from game_of_greed_1.game import turn, Game
 import builtins
 import re
 
@@ -41,12 +41,12 @@ class BasePlayer:
     for i in range(num_games):
       player = cls()
       try:
-          game = Game()
+        Game()
       except SystemExit:
-          pass
+        pass
           # player.old_print('Caught the Exception')
           # commented out to clear up the terminal screen           
-      game.play()
+      # Game()
       mega_total += player.total_score
       player.reset()
 
