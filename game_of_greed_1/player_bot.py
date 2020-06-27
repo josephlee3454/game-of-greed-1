@@ -87,6 +87,36 @@ class NervousNellie(BasePlayer):
       raise ValueError(f"Unrecognized prompt {prompt}")
 
 
+class UberLeetBot(BasePlayer):
+  roll = None
+  def _mock_input(self, *args, **kwargs):
+    
+    prompt = args[0]
+    if prompt.startswith("Wanna play?"):
+      return "y"
+    
+    elif prompt.startswith("Enter dice to keep (no spaces), or (q)uit:"):
+      if 1 in roll:
+        count_of_ones = roll.count(1)
+        return "1" * count_of_ones
+      else: 
+        return "q" 
+
+    elif prompt.startswith("(r)oll again, (b)ank your points or (q)uit"):
+      return "q"
+
+    
+  def _mock_print(self, *args, **kwargs):
+    global roll
+    first_arg = args[0]
+    first_char = first_arg[0]
+    if first_char.isdigit():
+      roll = tuple(int(char) for char in first_arg.split(","))     
+    
+    self.old_print(args[0])
+    # pass
+
 if __name__ == "__main__":
-    Naysayer.play(100)
-  # NervousNellie.play(100)
+  # Naysayer.play(100)
+  # NervousNellie.play(100)  #20 rounds average score 8000
+  UberLeetBot.play(20)
