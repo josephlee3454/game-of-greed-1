@@ -115,7 +115,7 @@ class UberLeetBot(BasePlayer):
 
         elif prompt.startswith("(r)oll again, (b)ank your points or (q)uit"):
             remaining_dice = len(self.roll) - self.num_selected_dice
-            if self.num_selected_dice == len(self.roll) or  remaining_dice < 3:
+            if self.num_selected_dice == len(self.roll) or  remaining_dice < 4:
               return "q"
             else:
               return "r"
@@ -140,9 +140,11 @@ def string_dice_tup(dice):
 
 if __name__ == "__main__":
     # Naysayer.play(100)
-    print("NervousNellie points")
-    NervousNellie.play(1000)  # 20 rounds average score 8000
-
     print("Uberleetbot points")
-    UberLeetBot.play(1000)
+    UberLeetBot.play(100)
+
+    # print("NervousNellie points")
+    # NervousNellie.play(100)  # 20 rounds average score 8000
+
+   
 
