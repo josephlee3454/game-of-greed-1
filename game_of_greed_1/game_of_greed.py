@@ -178,6 +178,19 @@ class GameLogic:
         highest_score = score
         highest_tuple = selection
     return highest_tuple
+  
+  @staticmethod
+  def get_highest_ratio(dice):
+    list_of_possibilities = GameLogic.permutate_dice(dice)
+    highest_tuple = tuple()
+    highest_ratio = 0
+    for selection in list_of_possibilities:
+      score = GameLogic.calculat_score(selection)
+      ratio = score / len(selection)
+      if ratio > highest_ratio:
+        highest_ratio = ratio
+        highest_tuple = selection
+    return highest_tuple
     
   @staticmethod
   def permutate_dice(dice: tuple) -> list:

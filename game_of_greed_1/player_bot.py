@@ -106,7 +106,7 @@ class UberLeetBot(BasePlayer):
         elif prompt.startswith("Enter dice to keep (no spaces), or (q)uit:"):
             if len(self.roll) >= 3:  # over 400 pts:
                 # self.old_print(self.roll)
-                scorers = GameLogic.get_scorers(self.roll)
+                scorers = GameLogic.get_highest_ratio(self.roll)
                 keepers = "".join([str(ch) for ch in scorers])
                 self.num_selected_dice = len(keepers)
                 return keepers
@@ -140,11 +140,11 @@ def string_dice_tup(dice):
 
 if __name__ == "__main__":
     # Naysayer.play(100)
-    print("Uberleetbot points")
-    UberLeetBot.play(100)
+    # print("Uberleetbot points")
+    # UberLeetBot.play(10000)
 
-    # print("NervousNellie points")
-    # NervousNellie.play(100)  # 20 rounds average score 8000
+    print("NervousNellie points")
+    NervousNellie.play(10000)  # 20 rounds average score 8000
 
    
 
