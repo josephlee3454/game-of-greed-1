@@ -29,24 +29,33 @@ Game of Greed I is a python command line version of the dice game. To review rul
 
 
 
-# Overveiw of tasks
-* Define a GameLogic class.
-* Handle calculating score for dice roll
-* Add calculate_score static method to GameLogic class.
-* The input to calculate_score is a tuple of integers that represent a dice roll.
-* The output from calculate_score is an integer representing the roll’s score according to rules of game.
-* Handle rolling dice
-* Add roll_dice static method to GameLogic class.
-* The input to roll_dice is an integer between 1 and 6.
-* The output of roll_dice is a tuple with random values between 1 and 6.
-* The length of tuple must match the argument given to roll_dice method.
-* Handle banking points
-* Define a Banker class
-* Add a shelf instance method
-* Input to shelf is the amount of points (integer) to add to shelf.
-* shelf should temporarily store unbanked points.
-* Add a bank instance method
-* bank should add any points on the shelf to total and reset shelf to 0.
-* bank output should be the amount of points added to total from shelf.
-* Add a clear_shelf instance method
-* clear_shelf should remove all unbanked points.
+
+# overveiw of tasks
+* Application should implement all features from previous version
+* Application should simulate rolling between 1 and 6 dice
+* Application should allow user to set aside dice each roll
+* Application should allow “banking” current score or rolling again.
+* Application should keep track of total score
+* Application should keep track of current round
+* Application should have automated tests to ensure proper operation
+
+User Acceptance Tests
+Convert required features into suite of passing unit tests
+E.g. test_roll
+doing a roll with x number of dice should return sequence of x length random integers between 1 and 6 inclusive
+Use an automated tool to ensure correct behavior from end user’s perspective
+
+
+
+Feature Tasks and Requirements
+Application should implement features from versions 1 and 2
+Should handle when cheating occurs.
+Or just typos.
+E.g. roll = [1,3,5,2] and user selects 1, 1, 1, 1, 1, 1
+Should allow user to continue rolling with 6 new dice when all dice have scored in current turn.
+Handle zilch
+No points for round, and round is over
+Any other questions refer to game doc or the online game or ask.
+
+User Acceptance Tests
+Must pass provided unit and flow tests.
