@@ -7,15 +7,16 @@ def turn(num_dice,roll_dice,turn_count,bank):
       print(f"Rolling {str(num_dice)} dice...")
       dice = roll_dice(num_dice)#dice rolling function is passed in
       while num_dice:
-        # if turn_count != 1:
-          # print(f"Starting round {str(turn_count)}")
-        # if GameLogic.hot_dice(dice,bank):
-        #   dice = (1,1,2,2,4,5)
-        # else:
           pretty_print_dice(dice)
           zilch_out(dice)
+          if GameLogic.hot_dice(dice, bank):
+            dice = roll_dice(num_dice)
+            continue
           user_input = input("Enter dice to keep (no spaces), or (q)uit: ")
           if user_input == "q":
+            score = GameLogic.calculat_score(dice)
+            bank.shelf(score)
+            bank.bank()
             print(f"Total score is {bank.banked_points} points")
             print(f"Thanks for playing. You earned {bank.banked_points} points")
             system_exit()
@@ -51,18 +52,19 @@ def play_again(bank, turn_count,num_dice, roll_dice):
     if bank_user_input == "q":
       bank.bank()
       print(f"Total score is {bank.banked_points} points")
+      print(f"Thanks for playing. You earned {bank.banked_points} points")      
       system_exit()
     
-    elif bank_user_input == "y":
-      print("this is what is on your shelf  " + str(bank.shelf_storage))
+    elif bank_user_input == "r":
+      turn(num_dice,roll_dice,turn_count,bank)
+      # print("this is what is on your shelf  " + str(bank.shelf_storage))
 
     elif bank_user_input == "b":
       round_points = bank.bank()
       print(f"You banked {round_points} points in round {turn_count}")
       print(f"Total score is {bank.banked_points} points")
-      turn_count += 1 
-      num_dice = 6
-      turn(num_dice, roll_dice, turn_count,bank)
+      system_exit()
+
     ## TODO: we need this to prevent infinite loop but its fundamentally wrong 
     else: 
       bank_user_input = input("Roll again y/n ? : ")

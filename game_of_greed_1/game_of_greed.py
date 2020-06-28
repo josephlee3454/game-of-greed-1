@@ -1,4 +1,4 @@
-import random
+import random, itertools
 from collections import Counter
 class GameLogic:
   """
@@ -169,8 +169,23 @@ class GameLogic:
 
   @staticmethod
   def get_scorers(dice):
-    return [1,5]
-
+    list_of_possibilities = GameLogic.permutate_dice(dice)
+    highest_tuple = tuple()
+    highest_score = 0
+    for selection in list_of_possibilities:
+      score = GameLogic.calculat_score(selection)
+      if score > highest_score:
+        highest_score = score
+        highest_tuple = selection
+    return highest_tuple
+    
+  @staticmethod
+  def permutate_dice(dice: tuple) -> list:
+    all_possible_dice = set()
+    for i in range(1,len(dice) +1):
+      for perm in itertools.permutations(dice,i):
+        all_possible_dice.add(tuple(sorted(list(perm))))
+    return all_possible_dice
 
 
     
