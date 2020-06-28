@@ -1,7 +1,8 @@
-## Game of Greed I
+# Game of Greed I
 
-**Authors:** Lee-Roy King, William Koger, Joseph Lee, Roman Sydoruk 
-**Version:** 1.0.0
+## **Authors:** 
+Lee-Roy King, William Koger, Joseph Lee, Roman Sydoruk 
+## **Version:** 1.0.0
 
 # Description
 
@@ -25,6 +26,7 @@ Game of Greed I is a python command line version of the dice game. To review rul
 **Banker** - class.\
 **shelf** - instance method with input of the amount of points (integer) to add to shelf.\
 **bank** - instance method which can remove all unbanked points.\
+
 
 
 
